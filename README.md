@@ -1,3 +1,5 @@
+> ⚠️ Requires an OpenAI API key to run locally.
+
 # AI React Orchestrator 🚀
 
 An AI-powered CLI tool that generates and incrementally updates React applications using natural language prompts — backed by strict validation, retry mechanisms, and dependency management.
@@ -47,6 +49,21 @@ ai-react-orchestrator/
 - index.js
 - package.json
 - README.md
+
+## Environment Setup
+
+This project requires an OpenAI API key.
+
+### Create a `.env` file in the root directory
+
+```config
+OPENAI_API_KEY=<your_api_key>
+```
+
+### ⚠️ Important
+
+- Do **not** commit your `.env` file
+- Ensure `.env` is added to `.gitignore`
 
 ---
 

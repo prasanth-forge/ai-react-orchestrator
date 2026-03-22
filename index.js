@@ -10,6 +10,11 @@ import { PROJECT_NAME, SUPPORTED_MODES } from "./config/constants.js";
 
 dotenv.config();
 
+if (!process.env.OPENAI_API_KEY) {
+  logError("Missing OPENAI_API_KEY in environment");
+  process.exit(1);
+}
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
