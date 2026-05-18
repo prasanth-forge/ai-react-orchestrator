@@ -8,10 +8,11 @@ interface RangeSliderProps {
   step: number
   onChangeMin: (v: number) => void
   onChangeMax: (v: number) => void
+  testId?: string
 }
 
 export default function RangeSlider({
-  min, max, valueMin, valueMax, step, onChangeMin, onChangeMax,
+  min, max, valueMin, valueMax, step, onChangeMin, onChangeMax, testId,
 }: RangeSliderProps) {
   const range = max - min
   const minPct = range === 0 ? 0 : ((valueMin - min) / range) * 100
@@ -29,6 +30,7 @@ export default function RangeSlider({
         max={max}
         step={step}
         value={valueMin}
+        data-testid={testId ? `${testId}-min` : undefined}
         onChange={e => onChangeMin(Math.min(parseFloat(e.target.value), valueMax - step))}
       />
       <input
@@ -39,6 +41,7 @@ export default function RangeSlider({
         max={max}
         step={step}
         value={valueMax}
+        data-testid={testId ? `${testId}-max` : undefined}
         onChange={e => onChangeMax(Math.max(parseFloat(e.target.value), valueMin + step))}
       />
     </div>

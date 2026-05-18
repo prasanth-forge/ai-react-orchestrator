@@ -34,6 +34,7 @@ export default function Search({
           <input
             type="text"
             className={styles.textInput}
+            data-testid="search-ticker"
             value={criteria.ticker}
             onChange={e => update({ ticker: e.target.value })}
             placeholder="e.g. AAPL"
@@ -45,6 +46,7 @@ export default function Search({
           <input
             type="text"
             className={styles.textInput}
+            data-testid="search-name"
             value={criteria.name}
             onChange={e => update({ name: e.target.value })}
             placeholder="e.g. Apple"
@@ -64,6 +66,7 @@ export default function Search({
             valueMin={criteria.weightMin}
             valueMax={criteria.weightMax}
             step={0.001}
+            testId="weight"
             onChangeMin={v => update({ weightMin: v })}
             onChangeMax={v => update({ weightMax: v })}
           />
@@ -82,6 +85,7 @@ export default function Search({
             valueMin={criteria.valueMin}
             valueMax={criteria.valueMax}
             step={1000}
+            testId="value"
             onChangeMin={v => update({ valueMin: v })}
             onChangeMax={v => update({ valueMax: v })}
           />
@@ -90,8 +94,8 @@ export default function Search({
       </div>
 
       <div className={styles.actions}>
-        <button className={styles.applyBtn} onClick={onApply}>Apply</button>
-        <button className={styles.resetBtn} onClick={onReset}>Reset</button>
+        <button className={styles.applyBtn} data-testid="search-apply" onClick={onApply}>Apply</button>
+        <button className={styles.resetBtn} data-testid="search-reset" onClick={onReset}>Reset</button>
       </div>
     </div>
   )
