@@ -1,23 +1,10 @@
 import { useState, useMemo } from 'react'
+import type { FundHolding } from './types/FundHolding'
+import { holdings } from './fixtures/holdings'
 import styles from './FundHoldings.module.css'
-
-interface FundHolding {
-  ticker: string
-  name: string
-  weight: number
-  value: number
-}
 
 type SortKey = keyof FundHolding
 type SortDir = 'asc' | 'desc'
-
-const holdings: FundHolding[] = [
-  { ticker: 'AAPL', name: 'Apple Inc.', weight: 0.072, value: 215340 },
-  { ticker: 'MSFT', name: 'Microsoft Corp.', weight: 0.065, value: 194880 },
-  { ticker: 'NVDA', name: 'NVIDIA Corp.', weight: 0.058, value: 174120 },
-  { ticker: 'AMZN', name: 'Amazon.com Inc.', weight: 0.041, value: 123060 },
-  { ticker: 'GOOGL', name: 'Alphabet Inc.', weight: 0.038, value: 114040 },
-]
 
 const columns: { key: SortKey; label: string }[] = [
   { key: 'ticker', label: 'Ticker' },
@@ -42,7 +29,7 @@ export default function FundHoldings() {
 
   const handleHeaderClick = (key: SortKey) => {
     if (sortKey === key) {
-      setSortDir(d => d === 'asc' ? 'desc' : 'asc')
+      setSortDir(d => (d === 'asc' ? 'desc' : 'asc'))
     } else {
       setSortKey(key)
       setSortDir('asc')
