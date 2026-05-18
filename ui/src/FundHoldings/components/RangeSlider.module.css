@@ -1,0 +1,86 @@
+.container {
+  position: relative;
+  width: 100%;
+  height: 20px;
+}
+
+.rail,
+.fill {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 4px;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+.rail {
+  left: 0;
+  right: 0;
+  background: #334155;
+}
+
+.fill {
+  background: #60a5fa;
+}
+
+.thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  pointer-events: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* WebKit track — transparent so the rail/fill divs show through */
+.thumb::-webkit-slider-runnable-track {
+  background: transparent;
+  height: 4px;
+}
+
+.thumb::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #60a5fa;
+  border: 2px solid #0d1117;
+  cursor: pointer;
+  pointer-events: all;
+  margin-top: -5px; /* centre 14px thumb on 4px track */
+  transition: background 0.15s;
+}
+
+.thumb::-webkit-slider-thumb:hover {
+  background: #93c5fd;
+}
+
+/* Firefox track */
+.thumb::-moz-range-track {
+  background: transparent;
+  height: 4px;
+}
+
+.thumb::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #60a5fa;
+  border: 2px solid #0d1117;
+  cursor: pointer;
+  pointer-events: all;
+  box-sizing: border-box;
+  transition: background 0.15s;
+}
+
+.thumb::-moz-range-thumb:hover {
+  background: #93c5fd;
+}

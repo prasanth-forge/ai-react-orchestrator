@@ -1,4 +1,5 @@
 import type { SearchCriteria } from '../hooks/useSearch'
+import RangeSlider from './RangeSlider'
 import styles from './Search.module.css'
 
 interface SearchProps {
@@ -50,61 +51,41 @@ export default function Search({
           />
         </label>
 
-        <label className={styles.field}>
+        <div className={styles.field}>
           <span className={styles.label}>
-            Weight min <span className={styles.value}>{(criteria.weightMin * 100).toFixed(1)}%</span>
+            Weight
+            <span className={styles.value}>
+              {(criteria.weightMin * 100).toFixed(1)}% – {(criteria.weightMax * 100).toFixed(1)}%
+            </span>
           </span>
-          <input
-            type="range"
+          <RangeSlider
             min={weightMin}
-            max={criteria.weightMax}
-            step={0.001}
-            value={criteria.weightMin}
-            onChange={e => update({ weightMin: parseFloat(e.target.value) })}
-          />
-        </label>
-
-        <label className={styles.field}>
-          <span className={styles.label}>
-            Weight max <span className={styles.value}>{(criteria.weightMax * 100).toFixed(1)}%</span>
-          </span>
-          <input
-            type="range"
-            min={criteria.weightMin}
             max={weightMax}
+            valueMin={criteria.weightMin}
+            valueMax={criteria.weightMax}
             step={0.001}
-            value={criteria.weightMax}
-            onChange={e => update({ weightMax: parseFloat(e.target.value) })}
+            onChangeMin={v => update({ weightMin: v })}
+            onChangeMax={v => update({ weightMax: v })}
           />
-        </label>
+        </div>
 
-        <label className={styles.field}>
+        <div className={styles.field}>
           <span className={styles.label}>
-            Value min <span className={styles.value}>{criteria.valueMin.toLocaleString()}</span>
+            Value
+            <span className={styles.value}>
+              {criteria.valueMin.toLocaleString()} – {criteria.valueMax.toLocaleString()}
+            </span>
           </span>
-          <input
-            type="range"
+          <RangeSlider
             min={valueMin}
-            max={criteria.valueMax}
-            step={1000}
-            value={criteria.valueMin}
-            onChange={e => update({ valueMin: parseInt(e.target.value, 10) })}
-          />
-        </label>
-
-        <label className={styles.field}>
-          <span className={styles.label}>
-            Value max <span className={styles.value}>{criteria.valueMax.toLocaleString()}</span>
-          </span>
-          <input
-            type="range"
-            min={criteria.valueMin}
             max={valueMax}
+            valueMin={criteria.valueMin}
+            valueMax={criteria.valueMax}
             step={1000}
-            value={criteria.valueMax}
-            onChange={e => update({ valueMax: parseInt(e.target.value, 10) })}
+            onChangeMin={v => update({ valueMin: v })}
+            onChangeMax={v => update({ valueMax: v })}
           />
-        </label>
+        </div>
 
       </div>
 

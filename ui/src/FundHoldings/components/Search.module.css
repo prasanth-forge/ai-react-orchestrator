@@ -19,7 +19,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
-  min-width: 120px;
+  min-width: 160px;
 }
 
 .label {
@@ -56,12 +56,6 @@
 
 .textInput:focus {
   border-color: #60a5fa;
-}
-
-input[type='range'] {
-  accent-color: #60a5fa;
-  width: 130px;
-  cursor: pointer;
 }
 
 .actions {
