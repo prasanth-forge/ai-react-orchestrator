@@ -1,0 +1,49 @@
+.wrapper {
+  overflow-x: auto;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 40px;
+  table-layout: fixed;
+}
+
+.table th,
+.table td {
+  padding: 10px 14px;
+  text-align: left;
+  color: #e2e8f0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table thead tr {
+  background-color: #0f172a;
+  font-size: 0.75rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.table thead th {
+  color: #94a3b8;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #1e293b;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #162032;
+}
+
+.table tbody tr:hover {
+  background-color: #273549;
+}
+
+/* Column widths — ticker and numeric cols are fixed; name takes the rest */
+.table th:nth-child(1) { width: 8%; }
+.table th:nth-child(2) { width: auto; }
+.table th:nth-child(3) { width: 12%; }
+.table th:nth-child(4) { width: 16%; }
