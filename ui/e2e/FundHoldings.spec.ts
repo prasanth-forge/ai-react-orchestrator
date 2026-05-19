@@ -1,5 +1,6 @@
 import { test, expect, type Locator } from "@playwright/test";
 import { holdings } from "../src/FundHoldings/fixtures/holdings";
+import { EMPTY_HOLDINGS_MESSAGE } from "../src/constants";
 
 // Range inputs don't respond to fill() — set value via the native prototype setter
 // so React's synthetic onChange fires correctly.
@@ -132,9 +133,7 @@ test.describe("FundHoldings", () => {
     await page.getByTestId("search-apply").click();
 
     await expect(page.locator("tbody tr")).toHaveCount(1);
-    await expect(
-      page.getByText(/No holdings matching the specified search criteria/),
-    ).toBeVisible();
+    await expect(page.getByText(EMPTY_HOLDINGS_MESSAGE)).toBeVisible();
   });
 
   // ─── Reset ───────────────────────────────────────────────────────────────────

@@ -1,5 +1,6 @@
 import type { FundHolding, SortKey, SortDir } from "../types/FundHolding";
 import styles from "../FundHoldings.module.css";
+import { EMPTY_HOLDINGS_MESSAGE } from "../../constants";
 
 const columns: { key: SortKey; label: string }[] = [
   { key: "ticker", label: "Ticker" },
@@ -71,7 +72,7 @@ export default function Table({
           {holdings.length === 0 && (
             <tr>
               <td colSpan={4} className={styles.tdNoHoldings}>
-                No holdings matching the specified search criteria
+                {EMPTY_HOLDINGS_MESSAGE}
               </td>
             </tr>
           )}
