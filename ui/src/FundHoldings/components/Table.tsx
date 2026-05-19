@@ -1,28 +1,34 @@
-import type { FundHolding, SortKey, SortDir } from '../types/FundHolding'
-import styles from '../FundHoldings.module.css'
+import type { FundHolding, SortKey, SortDir } from "../types/FundHolding";
+import styles from "../FundHoldings.module.css";
 
 const columns: { key: SortKey; label: string }[] = [
-  { key: 'ticker', label: 'Ticker' },
-  { key: 'name', label: 'Name' },
-  { key: 'weight', label: 'Weight' },
-  { key: 'value', label: 'Value (USD)' },
-]
+  { key: "ticker", label: "Ticker" },
+  { key: "name", label: "Name" },
+  { key: "weight", label: "Weight" },
+  { key: "value", label: "Value (USD)" },
+];
 
 interface TableProps {
-  holdings: FundHolding[]
-  sortKey: SortKey | null
-  sortDir: SortDir
-  onHeaderClick: (key: SortKey) => void
-  onClearSort: () => void
+  holdings: FundHolding[];
+  sortKey: SortKey | null;
+  sortDir: SortDir;
+  onHeaderClick: (key: SortKey) => void;
+  onClearSort: () => void;
 }
 
-export default function Table({ holdings, sortKey, sortDir, onHeaderClick, onClearSort }: TableProps) {
+export default function Table({
+  holdings,
+  sortKey,
+  sortDir,
+  onHeaderClick,
+  onClearSort,
+}: TableProps) {
   return (
     <div className={styles.wrapper}>
       <table className={styles.table}>
         <thead>
           <tr>
-            {columns.map(col => (
+            {columns.map((col) => (
               <th
                 key={col.key}
                 className={styles.sortable}
@@ -33,11 +39,14 @@ export default function Table({ holdings, sortKey, sortDir, onHeaderClick, onCle
                   {sortKey === col.key && (
                     <span className={styles.sortControls}>
                       <span className={styles.sortIcon}>
-                        {sortDir === 'asc' ? '↑' : '↓'}
+                        {sortDir === "asc" ? "↑" : "↓"}
                       </span>
                       <button
                         className={styles.clearBtn}
-                        onClick={e => { e.stopPropagation(); onClearSort() }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onClearSort();
+                        }}
                         title="Clear sort"
                       >
                         ✕
@@ -50,16 +59,24 @@ export default function Table({ holdings, sortKey, sortDir, onHeaderClick, onCle
           </tr>
         </thead>
         <tbody>
-          {holdings.map(h => (
-            <tr key={h.ticker}>
-              <td>{h.ticker}</td>
-              <td>{h.name}</td>
-              <td>{(h.weight * 100).toFixed(1)}%</td>
-              <td>{h.value.toLocaleString()}</td>
+          {holdings.length > 0 &&
+            holdings.map((h) => (
+              <tr key={h.ticker}>
+                <td>{h.ticker}</td>
+                <td>{h.name}</td>
+                <td>{(h.weight * 100).toFixed(1)}%</td>
+                <td>{h.value.toLocaleString()}</td>
+              </tr>
+            ))}
+          {holdings.length === 0 && (
+            <tr>
+              <td colSpan={4} className={styles.tdNoHoldings}>
+                No holdings matching the specified search criteria
+              </td>
             </tr>
-          ))}
+          )}
         </tbody>
       </table>
     </div>
-  )
+  );
 }
